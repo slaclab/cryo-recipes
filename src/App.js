@@ -9,9 +9,6 @@ import Col from 'react-bootstrap/Col'
 import { Stage } from 'ngl';
 import Slider from 'rc-slider';
 
-import BootstrapTable from 'react-bootstrap-table-next';
-import filterFactory, { textFilter, multiSelectFilter } from 'react-bootstrap-table2-filter';
-
 import {RIEInput, RIEToggle, RIETextArea, RIENumber, RIETags, RIESelect} from 'riek';
 
 import { Button } from 'react-bootstrap'
@@ -419,110 +416,6 @@ class Detail extends React.Component {
     )
   }
 }
-
-
-class PapersTable extends PapersDataComponent {
-
-  getFilterList(dataField) {
-    this.state.papers.forEach( (e) => {
-      // console.log(e)
-    })
-    var unique = [...new Set(this.state.papers.map(item => item[dataField]))].sort()
-    // console.log(unique);
-    var obj = {}
-    unique.forEach( d => obj[d] = d );
-    return obj
-  }
-
-
-  handleClick() {
-    console.log("click! her");
-  }
-
-  render() {
-
-    const columns = [
-      { dataField: 'id', text: 'id', sort: true, hidden: true  },
-      { dataField: 'type', text: 'Type', sort: true, filter: multiSelectFilter( {options: this.getFilterList('type') }) },
-      { dataField: 'gene', text: 'Gene', sort: true, 
-        filter: multiSelectFilter({
-          options: this.getFilterList('gene'), 
-          onFilter: (v) => { 
-            // console.log('filtered!' + v)
-            // console.log( this.getFilterList('gene') );
-          }
-        }) 
-      },
-      { dataField: 'native_source', text: 'Native Source', sort: true, filter: multiSelectFilter( {options: this.getFilterList('native_source') }) },
-      { dataField: 'name', text: 'Name', sort: true, filter: textFilter(), hidden: true },
-      { dataField: 'in_complex_with', text: 'In Complex With', sort: true },
-      { dataField: 'imaging_conditions.resolution', text: 'Resolution', sort: true },
-    ]
-    const defaultSorted = [{
-      dataField: 'id',
-      order: 'desc'
-    }]
-
-    const card = {
-      renderer: data => (
-        <div>
-          <Detail data={ data }/>
-        </div>
-      ),
-      showExpandColumn: true,
-      expandHeaderColumnRenderer: ({ isAnyExpands }) => {
-        if (isAnyExpands) {
-          return <b></b>;
-        }
-        return <b></b>;
-      },
-      expandColumnRenderer: ({ expanded }) => {
-        if (expanded) {
-          return (
-            <b>^</b>
-          );
-        } 
-        return (
-          <b>></b>
-        );
-      }
-    }
-
-    return (
-          <Container>
-            <Row>
-              <Col>
-                <Button variant="primary" onClick={ this.handleClick }>Primary</Button>
-              </Col>
-              <Col>
-                <DropdownButton id="dropdown-basic-button" title="Dropdown button">
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </DropdownButton>
-              </Col>
-            </Row>
-            <Row>
-      <BootstrapTable 
-        keyField='id'
-        data={this.state.papers} 
-        columns={columns}
-        filter={ filterFactory() } 
-        expandRow={ card }
-        defaultSorted={ defaultSorted } 
-        hover 
-        condensed 
-        responsive
-        variant="dark"
-        bootstrap4
-        noDataIndication="No papers matched your search"
-        tabIndexCell/>
-            </Row>
-          </Container>
-    )
-  }
-}
-
 
 const FilterIcon = ({ type }) => {
   if (type === 'month') {
