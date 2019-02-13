@@ -12,3 +12,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+select.filter.select-filter.form-control {
+  height: 200px;
+}
+
+
+.table thead th {
+  vertical-align: top;
+}
+
+div.viewer {
+  height: 60%;
+}
+
+.tab-content.active {
+  display: contents;
+}
