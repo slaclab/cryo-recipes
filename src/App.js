@@ -492,7 +492,7 @@ class PapersGrid extends PapersDataComponent {
       'monomer_tm_helices',
       'helices_oligomer',
       'affinity_tag_cleavage',
-      'final_stabilizer',
+      // 'final_stabilizer',
       'expression_organism',
       'extraction_method',
       'extraction_volume',
