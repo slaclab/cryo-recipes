@@ -15,11 +15,11 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      name: www
   template:
     metadata:
       labels:
-        app: www
+        name: www
     spec:
       containers:
       - name: www
@@ -29,6 +29,7 @@ spec:
 
 ---
 
+apiVersion: v1
 kind: Service
 metadata:
   name: www
@@ -36,20 +37,20 @@ metadata:
   labels:
     app: www
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
   - name: http
     port: 80
-    targetPort: http
     protocol: TCP
   selector:
-    app: www
+    name: www
 
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: www
+  namespace: cryo-recipes
   #annotations:
   #  nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"
   #  nginx.ingress.kubernetes.io/proxy-read-timeout: "20s"
