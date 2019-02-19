@@ -314,8 +314,8 @@ class Detail extends React.Component {
                   <tr><td>particle_size</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="particle_size" value={this.state.particle_size} /></td></tr>
                   <tr><td>monomer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="monomer" value={this.state.monomer} /></td></tr>
                   <tr><td>oligomer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="oligomer" value={this.state.oligomer} /></td></tr>
-                  <tr><td>monomer_tm_helices</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="monomer_tm_helices" value={this.state.monomer_tm_helices} /></td></tr>
-                  <tr><td>helices_oligomer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="helices_oligomer" value={this.state.helices_oligomer} /></td></tr>
+                  <tr><td>monomer_tmd_helices</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="monomer_tmd_helices" value={this.state.monomer_tmd_helices} /></td></tr>
+                  <tr><td>helices_tmd_oligomer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="helices_tmd_oligomer" value={this.state.helices_tmd_oligomer} /></td></tr>
                   <tr><td>affinity_tag_cleavage</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="affinity_tag_cleavage" value={this.state.affinity_tag_cleavage} /></td></tr>
                   <tr><td>final_stabilizer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="final_stabilizer" value={this.state.final_stabilizer} /></td></tr>
                   <tr><td>notes</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="notes" value={this.state.notes} /></td></tr>
@@ -333,7 +333,7 @@ class Detail extends React.Component {
               <table>
                 <tbody>
                   <tr><td>year_published</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="publication.year_published" value={ this.state.publication.year_published } /></td></tr>
-                  <tr><td>doi</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="publication.doi" value={ this.state.publication.doi } /></td></tr>
+                  <tr><td>doi</td><td><a href={ "https://www.doi.org/"+ this.state.publication.doi }><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="publication.doi" value={ this.state.publication.doi } /></a></td></tr>
                   <tr><td>pdb</td><td><a href={ "https://www.rcsb.org/structure/"+ this.state.publication.pdb }>{ this.state.publication.pdb }</a></td></tr>
                   <tr><td>emdb</td><td><a href={ "http://www.ebi.ac.uk/pdbe/entry/emdb/" + this.state.publication.emdb}>{ this.state.publication.emdb }</a></td></tr>
                 </tbody>
@@ -350,13 +350,13 @@ class Detail extends React.Component {
                   <tr><td>expression_organism</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.expression_organism" value={this.state.sample_preparation.expression_organism} /></td></tr>
                   <tr><td>stabilizer_exchange</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.stabilizer_exchange" value={this.state.sample_preparation.stabilizer_exchange} /></td></tr>
                   <tr><td>extraction_method</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.extraction_method" value={this.state.sample_preparation.extraction_method} /></td></tr>
-                  <tr><td>extraction_volume</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.extraction_volume" value={this.state.sample_preparation.extraction_volume} /></td></tr>
+                  <tr><td>extraction_concentration</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.extraction_concentration" value={this.state.sample_preparation.extraction_concentration} /></td></tr>
                   <tr><td>extraction_parameters</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.extraction_parameters" value={this.state.sample_preparation.extraction_parameters} /></td></tr>
                   <tr><td>affinity_tag_terminus</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.affinity_tag_terminus" value={this.state.sample_preparation.affinity_tag_terminus} /></td></tr>
                   <tr><td>initial_purification</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.initial_purification" value={this.state.sample_preparation.initial_purification} /></td></tr>
                   <tr><td>purification_details</td><td><RIETextArea isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.purification_details" value={this.state.sample_preparation.purification_details} /></td></tr>
                   <tr><td>composition_of_final_stabilizer</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.composition_of_final_stabilizer" value={this.state.sample_preparation.composition_of_final_stabilizer} /></td></tr>
-                  <tr><td>final_concentration_ratio</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.final_concentration_ratio" value={this.state.sample_preparation.final_concentration_ratio} /></td></tr>
+                  <tr><td>final_concentration_or_ratio</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.final_concentration_or_ratio" value={this.state.sample_preparation.final_concentration_or_ratio} /></td></tr>
                   <tr><td>final_purification</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="sample_preparation.final_purification" value={this.state.sample_preparation.final_purification} /></td></tr>
                 </tbody>
               </table>
@@ -367,7 +367,7 @@ class Detail extends React.Component {
               </Card.Title>
               <table>
                 <tbody>
-                  <tr><td>grid</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="grid_preparation.grid" value={this.state.grid_preparation.grid} /></td></tr>
+                  <tr><td>grid protein concentration</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="grid_preparation.grid_protein_concentration" value={this.state.grid_preparation.grid_protein_concentration} /></td></tr>
                   <tr><td>details</td><td><RIEInput isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="grid_preparation.details" value={this.state.grid_preparation.details} /></td></tr>
                   <tr><td>comments</td><td><RIETextArea isDisabled={!this.state.editing} validate={this.isStringAcceptable} change={this.fieldChanged} propName="grid_preparation.comments" value={this.state.grid_preparation.comments} /></td></tr>
                 </tbody>
@@ -448,24 +448,24 @@ class PapersGrid extends PapersDataComponent {
       { name: 'particle_size', title: 'Particle Size' },
       { name: 'monomer', title: 'Monomer' },
       { name: 'oligomer', title: 'Oligomer' },
-      { name: 'monomer_tm_helices', title: 'Monomer tm helices' },
-      { name: 'helices_oligomer', title: 'Helices Oligomer' },
+      { name: 'monomer_tmd_helices', title: 'Monomer tmd helices' },
+      { name: 'helices_tmd_oligomer', title: 'Helices tmd Oligomer' },
       { name: 'affinity_tag_cleavage', title: 'Affinity Tag Cleavage' },
       { name: 'final_stabilizer', title: 'Final Stabilizer' },
 
       { name: 'expression_organism', title: 'Expression Organism', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.expression_organism : undefined ) },
       { name: 'extraction_method', title: 'Extraction Method', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.extraction_method : undefined ) },
-      { name: 'extraction_volume', title: 'Extraction Volume', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.extraction_volume : undefined ) },
+      { name: 'extraction_concentration', title: 'Extraction Concentration', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.extraction_concentration : undefined ) },
       { name: 'extraction_parameters', title: 'Extraction Parameters', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.extraction_parameters : undefined ) },
       { name: 'affinity_tag_terminus', title: 'Affinity Tag Terminus', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.affinity_tag_terminus : undefined ) },
       { name: 'initial_purification', title: 'Initial Purification', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.initial_purification : undefined ) },
       { name: 'stabilizer_exchange', title: 'Stabilizer Exchange', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.stabilizer_exchange : undefined ) },
       { name: 'purification_details', title: 'Purification Details', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.purification_details : undefined ) },
       { name: 'composition_of_final_stabilizer', title: 'Composition of Final Stabilizer', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.composition_of_final_stabilizer : undefined ) },
-      { name: 'final_concentration_ratio', title: 'Final Concentration Ratio', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.final_concentration_ratio : undefined ) },
+      { name: 'final_concentration_or_ratio', title: 'Final Concentration Or Ratio', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.final_concentration_or_ratio : undefined ) },
       { name: 'final_purification', title: 'Final Purification', getCellValue: row => ( row.sample_preparation ? row.sample_preparation.final_purification : undefined ) },
 
-      { name: 'grid', title: 'Grid', getCellValue: row => ( row.grid_preparation ? row.grid_preparation.grid : undefined ) },
+      { name: 'grid_protein_concentration', title: 'Grid Protein Concentration', getCellValue: row => ( row.grid_preparation ? row.grid_preparation.grid_protein_concentration : undefined ) },
       { name: 'grid_details', title: 'Grid Details', getCellValue: row => ( row.grid_preparation ? row.grid_preparation.details : undefined ) },
 
       { name: 'detector', title: 'Detector', getCellValue: row => ( row.imaging_conditions ? row.imaging_conditions.detector : undefined ) },
@@ -489,22 +489,22 @@ class PapersGrid extends PapersDataComponent {
     this.state.hiddenColumnNames = [
       'monomer',
       'oligomer',
-      'monomer_tm_helices',
-      'helices_oligomer',
+      'monomer_tmp_helices',
+      'helices_tmp_oligomer',
       'affinity_tag_cleavage',
       // 'final_stabilizer',
       'expression_organism',
       'extraction_method',
-      'extraction_volume',
+      'extraction_concentration',
       'extraction_parameters',
       'affinity_tag_terminus',
       'initial_purification',
       'stabilizer_exchange',
       'purification_details',
       'composition_of_final_stabilizer',
-      'final_concentration_ratio',
+      'final_concentration_or_ratio',
       'final_purification',
-      'grid',
+      'grid_protein_concentration',
       'grid_details',
       'detector',
       'keV',
