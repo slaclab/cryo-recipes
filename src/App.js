@@ -53,6 +53,14 @@ class Navigation extends React.Component {
           />
         {' CryoEM Recipes - Membrane Protein Database'}
         </Navbar.Brand>
+        <Navbar.Brand href="https://gati-lab.slac.stanford.edu">
+          <img
+            alt=""
+            src=""
+            className="d-inline-block align-right"
+          />
+        {'Gati lab'}
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
