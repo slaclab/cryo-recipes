@@ -1,0 +1,33 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: gati-lab-webpages
+spec:
+  externalName: gatic.github.io
+  type: ExternalName
+---
+kind: Ingress
+apiVersion: extensions/v1beta1
+metadata:
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: "/gati-lab/$1"
+    nginx.ingress.kubernetes.io/upstream-vhost: "gatic.github.io"
+    #nginx.ingress.kubernetes.io/add-base-url : "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "https"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      proxy_ssl_name gati.github.io;
+      proxy_ssl_server_name on;
+  name: gati-lab-ingress
+spec:
+  rules:
+  - host: gati-lab.slac.stanford.edu
+    http:
+      paths:
+      - backend:
+          serviceName: gati-lab-webpages
+          servicePort: 443
+        path: /gati-lab/(.*)
+      - backend:
+          serviceName: gati-lab-webpages
+          servicePort: 443
+        path: /(.*)

@@ -1,0 +1,6 @@
+
+namespace: gati-lab
+
+resources:
+- deployment.yaml
+- gati-lab-webpages.yaml
