@@ -5,6 +5,7 @@ resources:
 - deployment.yaml
 - database.yaml
 - gati-lab-webpages.yaml
+- ingress.yaml
 
 secretGenerator:
 - name: ssh-key
