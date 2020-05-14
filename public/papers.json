@@ -2,7 +2,7 @@
   {
     "grid_preparation": {
       "grid_protein_concentration": 2,
-      "details": "UltrAuFoil R 1.2/1.3 300",
+      "details": "UltrAuFoil R1.2/1.3 300",
       "comments": "PEGylated gold grids"
     },
     "helices_tmd_oligomer": 26,
@@ -48,7 +48,7 @@
       "composition_of_final_stabilizer": "A8-35",
       "extraction_concentration": "1.50%",
       "final_concentration_or_ratio": "1:4",
-      "initial_purification": "HiTrap, Flag M2",
+      "initial_purification": "HisTrap, Flag M2",
       "final_purification": "Superose 6",
       "purification_details": "first exchange to MNG",
       "extraction_method": "DDM",
