@@ -21,38 +21,45 @@ import { DeepDiff } from 'deep-diff';
 import {
   SortingState,
   IntegratedSorting,
-  SearchState, 
+  SearchState,
   RowDetailState,
   FilteringState, IntegratedFiltering,
   // DataTypeProvider
 } from '@devexpress/dx-react-grid';
-import { 
+import {
   Grid,
   Table,
   // VirtualTable,
   TableHeaderRow,
+  TableEditColumn,
   TableColumnVisibility,
   ColumnChooser,
   Toolbar,
   TableRowDetail,
   TableFilterRow,
   SearchPanel
-} from '@devexpress/dx-react-grid-bootstrap4';
 
+} from '@devexpress/dx-react-grid-bootstrap4';
 
 class Navigation extends React.Component {
   render() {
     return (
-      <Navbar bg="dark" variant="dark">
+      <Navbar className="navbar-custom" variant="dark">
         <Navbar.Brand href="#home">
           <img
             alt=""
-            src="/ginger-beard.png"
-            width="30"
-            height="30"
+            src="/slac_small.png"
             className="d-inline-block align-top"
           />
-        {' CryoEM Recipes - Protein Preparation Database'}
+        {' CryoEM Recipes - Membrane Protein Database'}
+        </Navbar.Brand>
+        <Navbar.Brand href="https://gati-lab.slac.stanford.edu">
+          <img
+            alt=""
+            src=""
+            className="d-inline-block align-right"
+          />
+        {'Gati lab'}
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
@@ -112,7 +119,7 @@ class MapViewer extends React.Component {
       id: 'PDB-' + props.pdb + '--EMD-' + props.emdb
     }
   }
-  
+
   loadPdb( stage, pdb, visibility=false, pdb_url=`https://files.rcsb.org/download/${pdb}.pdb` ){
     console.log('loading structural map ' + pdb_url );
     stage.loadFile( pdb_url )
@@ -201,7 +208,7 @@ class Detail extends React.Component {
   componentDidMount() {
     // console.log( this.state );
   }
-  
+
   virtualServerCallback = (newState) => {
     this.changeState(newState);
     // console.log( newState);
@@ -220,19 +227,18 @@ class Detail extends React.Component {
   editButton = (evt) => {
     console.log(evt);
     this.setState( { editing: ! this.state.editing }, (evt) => {
-      // submit new document
+      //  new document
       if( ! this.state.editing ) {
         console.log( 'submitting..' );
         var doc = {...this.state};
         delete doc.editing
-        const orig = {...doc.original}; 
+        const orig = {...doc.original};
         delete orig.editing;
         delete doc.original
         //console.log( orig )
         //console.log( doc )
         let differences = DeepDiff( orig, doc );
         console.log( differences )
-        
       }
       // copy original
       else {
@@ -293,7 +299,7 @@ class Detail extends React.Component {
          <Container>
            <Row>
              <Col><h3>Paper { this.state.publication.doi }</h3></Col>
-             <Col align={'right'}><Button variant="outline-primary" onClick={this.editButton}>{ this.state.editing ? 'Submit' : 'Edit' }</Button></Col>
+             <Col align={'right'}><Button variant="outline-primary" onClick={this.editButton}>{ this.state.editing ? 'Submit' : 'Edit' } </Button></Col>
            </Row>
          </Container>
       </Card.Header>
@@ -375,7 +381,7 @@ class Detail extends React.Component {
             </Col>
           </Row>
           <Row>
-            <Col> 
+            <Col>
               <Card.Title>
                 Imaging Conditions
               </Card.Title>
@@ -438,10 +444,10 @@ class PapersGrid extends PapersDataComponent {
     console.log( row );
     return( <Detail data={ row } /> )
   }
-  
+
   constructor( props ) {
     super(props);
-    this.state.columns = [ 
+    this.state.columns = [
       { name: 'type', title: 'Type' },
       { name: 'gene', title: 'Gene' },
       { name: 'native_source', title: 'Native Source' },
@@ -484,7 +490,7 @@ class PapersGrid extends PapersDataComponent {
       { name: 'final_number_particles', title: 'Final Number Particles', getCellValue: row => ( row.imaging_conditions ? row.imaging_conditions.final_number_particles : undefined ) },
       { name: 'software', title: 'Software', getCellValue: row => ( row.imaging_conditions ? row.imaging_conditions.software : undefined ) },
 
-      { name: 'resolution', title: 'Resolution', getCellValue: row => ( row.imaging_conditions ? row.imaging_conditions.resolution : undefined ) }, 
+      { name: 'resolution', title: 'Resolution', getCellValue: row => ( row.imaging_conditions ? row.imaging_conditions.resolution : undefined ) },
     ]
     this.state.hiddenColumnNames = [
       'monomer',
@@ -520,14 +526,14 @@ class PapersGrid extends PapersDataComponent {
       'total_number_images',
       'final_number_particles',
       'software',
-      
+
     ]
 
     this.hiddenColumnNamesChange = (hiddenColumnNames) => {
       this.setState({ hiddenColumnNames });
     };
 
-  }  
+  }
 
   render() {
     const { hiddenColumnNames } = this.state
@@ -549,7 +555,7 @@ class PapersGrid extends PapersDataComponent {
           <TableHeaderRow showSortingControls />
           <TableRowDetail
             contentComponent={ this.getDetail } />
-          <TableColumnVisibility 
+          <TableColumnVisibility
             defaultHiddenColumnNames={ hiddenColumnNames }
             onHiddenColumnNamesChange={this.hiddenColumnNamesChange}
           />
@@ -579,4 +585,3 @@ class App extends PapersDataComponent {
 }
 
 export default App;
-
