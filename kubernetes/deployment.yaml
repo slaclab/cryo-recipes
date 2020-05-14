@@ -22,7 +22,8 @@ spec:
     spec:
       containers:
       - name: www
-        image: slaclab/cryo-recipes:0.1-2
+        #image: slaclab/cryo-recipes:0.1-2
+        image: slaclab/cryo-recipes:0.2-0
         ports:
         - containerPort: 80
 
