@@ -2,7 +2,7 @@
   {
     "grid_preparation": {
       "grid_protein_concentration": 2,
-      "details": "UltrAuFoil R 1.2/1.3 300",
+      "details": "UltrAuFoil R1.2/1.3 300",
       "comments": "PEGylated gold grids"
     },
     "helices_tmd_oligomer": 26,
