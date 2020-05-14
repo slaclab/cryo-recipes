@@ -22,8 +22,8 @@ spec:
     spec:
       containers:
       - name: www
-        #image: slaclab/cryo-recipes:0.1-2
-        image: slaclab/cryo-recipes:0.2-1
+        image: slaclab/cryo-recipes:20200514.0
+        #image: slaclab/cryo-recipes:0.2-1
         ports:
         - containerPort: 80
 
@@ -44,31 +44,4 @@ spec:
   selector:
     name: www
 
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: www
-  #annotations:
-  #  nginx.ingress.kubernetes.io/proxy-connect-timeout: "30s"
-  #  nginx.ingress.kubernetes.io/proxy-read-timeout: "20s"
-  #  nginx.ingress.kubernetes.io/client-max-body-size: "50m"
-  #  nginx.ingress.kubernetes.io/proxy-body-size: "50m"
-spec:
-  tls:
-    - hosts:
-      - cryo-recipes.slac.stanford.edu
-      secretName: tls-certificate
-  rules:
-    - host: cryo-recipes.slac.stanford.edu
-      http:
-        paths:
-        - path: /api/
-          backend:
-            serviceName: db
-            servicePort: 3000
-        - path: /
-          backend:
-            serviceName: www
-            servicePort: 80
 

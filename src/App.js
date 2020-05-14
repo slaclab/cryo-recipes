@@ -83,7 +83,7 @@ class PapersDataComponent extends React.Component {
 
   componentDidMount() {
     console.log('fetching papers.json');
-    fetch( '/papers.json' )
+    fetch( '/api/papers.json' )
       .then( results => results.json() )
       .then( data => {
         const papers = data;
@@ -299,7 +299,6 @@ class Detail extends React.Component {
          <Container>
            <Row>
              <Col><h3>Paper { this.state.publication.doi }</h3></Col>
-             <Col align={'right'}><Button variant="outline-primary" onClick={this.editButton}>{ this.state.editing ? 'Submit' : 'Edit' } </Button></Col>
            </Row>
          </Container>
       </Card.Header>
