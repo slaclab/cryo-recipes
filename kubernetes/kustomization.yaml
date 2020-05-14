@@ -3,4 +3,11 @@ namespace: gati-lab
 
 resources:
 - deployment.yaml
+- database.yaml
 - gati-lab-webpages.yaml
+
+secretGenerator:
+- name: ssh-key
+  files:
+    - etc/id_rsa
+ 

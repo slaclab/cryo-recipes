@@ -23,7 +23,7 @@ spec:
       containers:
       - name: www
         #image: slaclab/cryo-recipes:0.1-2
-        image: slaclab/cryo-recipes:0.2-0
+        image: slaclab/cryo-recipes:0.2-1
         ports:
         - containerPort: 80
 
@@ -63,6 +63,10 @@ spec:
     - host: cryo-recipes.slac.stanford.edu
       http:
         paths:
+        - path: /api/
+          backend:
+            serviceName: db
+            servicePort: 3000
         - path: /
           backend:
             serviceName: www
