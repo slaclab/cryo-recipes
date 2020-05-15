@@ -41,6 +41,9 @@ import {
 
 } from '@devexpress/dx-react-grid-bootstrap4';
 
+import { Fab, Action } from 'react-tiny-fab';
+import 'react-tiny-fab/dist/styles.css';
+
 class Navigation extends React.Component {
   render() {
     return (
@@ -572,12 +575,13 @@ class PapersGrid extends PapersDataComponent {
 }
 
 class App extends PapersDataComponent {
-
+  
   render() {
     return (
       <div>
         <Navigation />
         <PapersGrid />
+        <Fab icon="+" mainButtonStyles={{backgroundColor: '#27ae60'}}/>
       </div>
     );
   }
