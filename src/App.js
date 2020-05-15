@@ -581,7 +581,7 @@ class App extends PapersDataComponent {
       <div>
         <Navigation />
         <PapersGrid />
-        <Fab icon="+" mainButtonStyles={{backgroundColor: '#27ae60'}}/>
+        <Fab icon="+" mainButtonStyles={{backgroundColor: '#27ae60'}} onClick={ e => {console.log(e)}}/>
       </div>
     );
   }
