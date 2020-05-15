@@ -85,8 +85,8 @@ class PapersDataComponent extends React.Component {
   }
 
   componentDidMount() {
-    console.log('fetching papers.json');
-    fetch( '/api/papers.json' )
+    console.log('fetching '+process.env.REACT_APP_DB_SERVER+'/api/papers.json');
+    fetch( process.env.REACT_APP_DB_SERVER + '/api/papers.json' )
       .then( results => results.json() )
       .then( data => {
         const papers = data;

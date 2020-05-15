@@ -24,6 +24,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "dev": "REACT_APP_DB_SERVER=http://localhost:3000 PORT=3003 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
