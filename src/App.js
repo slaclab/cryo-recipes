@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 import { Navbar, Nav, Card } from 'react-bootstrap';
@@ -74,6 +74,65 @@ class Navigation extends React.Component {
   }
 }
 
+
+const PaperSchema = {
+  "editing": true,
+  "grid_preparation": {
+    "grid_protein_concentration": "-",
+    "details": "-",
+    "comments": "-"
+  },
+  "helices_tmd_oligomer": "-",
+  "id": "-",
+  "monomer": "-",
+  "publication": {
+    "emdb": "-",
+    "doi": "-",
+    "pdb": "-",
+    "year_published": "-"
+  },
+  "oligomer": "-",
+  "type": "-",
+  "affinity_tag_cleavage": "-",
+  "particle_size": "-",
+  "imaging_conditions": {
+    "frame_duration": "-",
+    "total_dose": "-",
+    "vpp": "-",
+    "symmetry_applied": "-",
+    "resolution": "-",
+    "super_resolution": "-",
+    "cs_corrector": "-",
+    "final_number_particles": "-",
+    "total_number_images": "-",
+    "keV": "-",
+    "detector": "-",
+    "energy_filter": "-",
+    "total_exposure_time": "-",
+    "pixel_size": "-",
+    "software": "-"
+  },
+  "native_source": "-",
+  "final_stabilizer": "-",
+  "in_complex_with": "-",
+  "monomer_tmd_helices": "-",
+  "name": "-",
+  "notes": "-",
+  "sample_preparation": {
+    "affinity_tag_terminus": "-",
+    "expression_organism": "-",
+    "extraction_parameters": "-",
+    "composition_of_final_stabilizer": "-",
+    "extraction_concentration": "-",
+    "final_concentration_or_ratio": "-",
+    "initial_purification": "-",
+    "final_purification": "-",
+    "purification_details": "-",
+    "extraction_method": "-",
+    "stabilizer_exchange": "-"
+  },
+  "gene": "-"
+}
 
 class PapersDataComponent extends React.Component {
 
@@ -205,7 +264,9 @@ class Detail extends React.Component {
   constructor( props ){
     super(props);
     this.state = props.data
-    this.state.editing = false;
+    if (!('editing' in this.state)) {
+      this.state.editing = false;
+    }
   }
 
   componentDidMount() {
@@ -302,6 +363,7 @@ class Detail extends React.Component {
          <Container>
            <Row>
              <Col><h3>Paper { this.state.publication.doi }</h3></Col>
+             <Col align={'right'}><Button variant="outline-primary" onClick={this.editButton}>{ this.state.editing ? 'Submit' : 'Request Changes' } </Button></Col>
            </Row>
          </Container>
       </Card.Header>
@@ -575,13 +637,26 @@ class PapersGrid extends PapersDataComponent {
 }
 
 class App extends PapersDataComponent {
+    
+  constructor() {
+    super();
+    this.state = {
+      showNewDetail: false
+    }
+  }
+  
+  showNewDetailToggle() {  
+    console.log("STATE: " + this.state.showNewDetail)
+    this.setState({ showNewDetail: !this.state.showNewDetail });
+  }
   
   render() {
     return (
       <div>
         <Navigation />
         <PapersGrid />
-        <Fab icon="+" mainButtonStyles={{backgroundColor: '#27ae60'}} onClick={ e => {console.log(e)}}/>
+        { this.state.showNewDetail && <Detail data={PaperSchema} /> }
+        <Fab icon="+" mainButtonStyles={{backgroundColor: '#27ae60'}} onClick={e=>{this.showNewDetailToggle()}}/>
       </div>
     );
   }
